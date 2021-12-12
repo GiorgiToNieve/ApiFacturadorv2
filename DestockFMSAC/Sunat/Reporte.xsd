@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="Reporte" targetNamespace="http://tempuri.org/Reporte.xsd" xmlns:mstns="http://tempuri.org/Reporte.xsd" xmlns="http://tempuri.org/Reporte.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="Reporte" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="Reporte" msprop:Generator_UserDSName="Reporte">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="TransaccionDetalle" msprop:Generator_TableClassName="TransaccionDetalleDataTable" msprop:Generator_TableVarName="tableTransaccionDetalle" msprop:Generator_RowChangedName="TransaccionDetalleRowChanged" msprop:Generator_TablePropName="TransaccionDetalle" msprop:Generator_RowDeletingName="TransaccionDetalleRowDeleting" msprop:Generator_RowChangingName="TransaccionDetalleRowChanging" msprop:Generator_RowEvHandlerName="TransaccionDetalleRowChangeEventHandler" msprop:Generator_RowDeletedName="TransaccionDetalleRowDeleted" msprop:Generator_RowClassName="TransaccionDetalleRow" msprop:Generator_UserTableName="TransaccionDetalle" msprop:Generator_RowEvArgName="TransaccionDetalleRowChangeEvent">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="TransaccionDetalle_Id" msprop:Generator_ColumnVarNameInTable="columnTransaccionDetalle_Id" msprop:Generator_ColumnPropNameInRow="TransaccionDetalle_Id" msprop:Generator_ColumnPropNameInTable="TransaccionDetalle_IdColumn" msprop:Generator_UserColumnName="TransaccionDetalle_Id" type="xs:string" minOccurs="0" />
+              <xs:element name="Producto_Id" msprop:Generator_ColumnVarNameInTable="columnProducto_Id" msprop:Generator_ColumnPropNameInRow="Producto_Id" msprop:Generator_ColumnPropNameInTable="Producto_IdColumn" msprop:Generator_UserColumnName="Producto_Id" type="xs:string" minOccurs="0" />
+              <xs:element name="sProNombre" msprop:Generator_ColumnVarNameInTable="columnsProNombre" msprop:Generator_ColumnPropNameInRow="sProNombre" msprop:Generator_ColumnPropNameInTable="sProNombreColumn" msprop:Generator_UserColumnName="sProNombre" type="xs:string" minOccurs="0" />
+              <xs:element name="nTDeCantidad" msprop:Generator_ColumnVarNameInTable="columnnTDeCantidad" msprop:Generator_ColumnPropNameInRow="nTDeCantidad" msprop:Generator_ColumnPropNameInTable="nTDeCantidadColumn" msprop:Generator_UserColumnName="nTDeCantidad" type="xs:decimal" minOccurs="0" />
+              <xs:element name="nTDePrecio" msprop:Generator_ColumnVarNameInTable="columnnTDePrecio" msprop:Generator_ColumnPropNameInRow="nTDePrecio" msprop:Generator_ColumnPropNameInTable="nTDePrecioColumn" msprop:Generator_UserColumnName="nTDePrecio" type="xs:decimal" minOccurs="0" />
+              <xs:element name="nTDeBase" msprop:Generator_ColumnVarNameInTable="columnnTDeBase" msprop:Generator_ColumnPropNameInRow="nTDeBase" msprop:Generator_ColumnPropNameInTable="nTDeBaseColumn" msprop:Generator_UserColumnName="nTDeBase" type="xs:decimal" minOccurs="0" />
+              <xs:element name="nTDeSubtotal" msprop:Generator_ColumnVarNameInTable="columnnTDeSubtotal" msprop:Generator_ColumnPropNameInRow="nTDeSubtotal" msprop:Generator_ColumnPropNameInTable="nTDeSubtotalColumn" msprop:Generator_UserColumnName="nTDeSubtotal" type="xs:decimal" minOccurs="0" />
+              <xs:element name="iLogo" msprop:Generator_ColumnVarNameInTable="columniLogo" msprop:Generator_ColumnPropNameInRow="iLogo" msprop:Generator_ColumnPropNameInTable="iLogoColumn" msprop:Generator_UserColumnName="iLogo" type="xs:base64Binary" minOccurs="0" />
+              <xs:element name="iCodHash" msprop:Generator_ColumnVarNameInTable="columniCodHash" msprop:Generator_ColumnPropNameInRow="iCodHash" msprop:Generator_ColumnPropNameInTable="iCodHashColumn" msprop:Generator_UserColumnName="iCodHash" type="xs:base64Binary" minOccurs="0" />
+              <xs:element name="sUMeCodigoSunat" msprop:Generator_ColumnVarNameInTable="columnsUMeCodigoSunat" msprop:Generator_ColumnPropNameInRow="sUMeCodigoSunat" msprop:Generator_ColumnPropNameInTable="sUMeCodigoSunatColumn" msprop:Generator_UserColumnName="sUMeCodigoSunat" type="xs:string" minOccurs="0" />
+              <xs:element name="sUMeDescripcion" msprop:Generator_ColumnVarNameInTable="columnsUMeDescripcion" msprop:Generator_ColumnPropNameInRow="sUMeDescripcion" msprop:Generator_ColumnPropNameInTable="sUMeDescripcionColumn" msprop:Generator_UserColumnName="sUMeDescripcion" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

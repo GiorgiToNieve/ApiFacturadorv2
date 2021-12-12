@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="d02e4bb5-ccec-46fe-aef1-acb5de7e18a6" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="https://ose.efact.pe/ol-ti-itcpe/billService?wsdl" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="BillServiceImplService.wsdl" MetadataType="Wsdl" ID="8beb12ad-02a7-4e68-a692-48a8a2e0e60c" SourceId="1" SourceUrl="https://ose.efact.pe/ol-ti-itcpe/billService?wsdl" />
+    <MetadataFile FileName="billService.wsdl" MetadataType="Wsdl" ID="258ac3ed-c098-4095-87d8-efd430f02abe" SourceId="1" SourceUrl="http://ose.efact.pe/ol-ti-itcpe/billService?wsdl=1" />
+    <MetadataFile FileName="billService.xsd" MetadataType="Schema" ID="0d5df49a-8850-4173-b5b4-5b103f569f3c" SourceId="1" SourceUrl="http://ose.efact.pe/ol-ti-itcpe/billService?xsd=1" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

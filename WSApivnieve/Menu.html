@@ -1,0 +1,80 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, shrink-to-fit=no, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Servicio</title>
+
+    <!-- Bootstrap Core CSS -->
+   
+    <link href="Content/bootstrap.min.css" rel="stylesheet" />
+    <!-- Custom CSS -->
+    <link href="Content/simple-sidebar.css" rel="stylesheet" />
+   
+</head>
+
+<body>
+
+    <div id="wrapper">
+
+        <!-- Sidebar -->
+        <div id="sidebar-wrapper">
+            <ul class="sidebar-nav">
+                <li class="sidebar-brand">
+                    <a href="#">
+                        Menú Servicio
+                    </a>
+                </li>
+                
+                <li>
+                    <a href="servicio/Transaccion">Listar Transaccion JSON</a>
+                </li>
+                <li>
+                    <a href="servicio/Empresa">Listar Empresas JSON</a>
+                </li>
+
+                <li>
+                    <a href="servicio/Transaccion/Ejemplo">Ejemplo</a>
+                </li>
+            </ul>
+        </div>
+        <!-- /#sidebar-wrapper -->
+        <!-- Page Content -->
+        <div id="page-content-wrapper">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <h1>Servicio Web</h1>
+                        <p></p>
+                        <a href="#" class="btn btn-default" id="menu-toggle"><></a>
+                        <a href="index.html" class="btn btn-lg btn-secondary">Principal</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- /#page-content-wrapper -->
+
+    </div>
+    <!-- /#wrapper -->
+    <!-- jQuery -->
+    <script src="Scripts/jquery-1.10.2.js"></script>
+    <!-- Bootstrap Core JavaScript -->
+    <script src="Scripts/bootstrap.min.js"></script>
+    <!-- Menu Toggle Script -->
+    <script>
+        $("#menu-toggle").click(function (e) {
+            e.preventDefault();
+            $("#wrapper").toggleClass("toggled");
+        });
+    </script>
+
+</body>
+
+</html>
+
