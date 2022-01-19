@@ -1,14 +1,23 @@
-﻿<!DOCTYPE html>
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <meta name="viewport" content="width=device-width" />
-    <title>Error</title>
-</head>
-<body>
-    <hgroup>
-        <h1>Error.</h1>
-        <h2>Error al procesar la solicitud.</h2>
-    </hgroup>
-</body>
-</html>
+﻿@model System.Web.Mvc.HandleErrorInfo
+
+@{
+    ViewBag.Title = "Error";
+}
+
+<div style="background-color: #A52A2A; color: White; height: 10px;">
+</div>
+<div style="background-color: White; color: orangered; height: 170px;">
+    <div style=" padding:20px;">
+        <h3>
+            Application Error:
+        </h3>
+        <h4>
+            Lo sentimos seha presentado el siguiente error. @Model.Exception.Message
+        </h4>
+        <h6>@Html.ActionLink("Retornar a la Pagina de consultas", "Descargas", "Home")</h6>
+        <br />
+        <br />
+    </div>
+</div>
+<div style="background-color: #A52A2A; color: White; height: 50px;">
+</div>  

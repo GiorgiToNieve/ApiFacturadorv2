@@ -47,7 +47,7 @@ namespace WSApiFMSACApp.Controllers
         }
 
         [HttpPost]
-        public FileResult ConsultarDocumento(string ruc,string serie,string numero,string accion)
+        public ActionResult ConsultarDocumento(string ruc,string serie,string numero,string accion)
         {
 			try
 			{
@@ -55,16 +55,41 @@ namespace WSApiFMSACApp.Controllers
 				string RUTA_XML = string.Empty;
                 string RUTA_CDR = string.Empty;
 
-                if (serie.Length <= 0)
-                {
-                    Response.Redirect("~/Home/Index");
-                }
-                if (numero.Length <= 0)
-                {
-                    Response.Redirect("~/Home/Index");
-                }
+				#region Validaciones de los parametros
+				if (ruc.Length <= 10)
+				{
+					throw new Exception("La longitud del campo RUC emisor con valor ingresado " + ruc + " no es correcto.");
+				}
+				if (ruc.Length > 11)
+				{
+					throw new Exception("La longitud del campo RUC emisor con valor ingresado " + ruc + " no es correcto.");
+				}
+
+				if (serie.Length < 4)
+				{
+					throw new Exception("La longitud del campo Serie con valor ingresado " + serie + " no es correcto.");
+				}
+				if (serie.Length > 4)
+				{
+					throw new Exception("La longitud del campo Serie con valor ingresado " + serie + " no es correcto.");
+				}
+
+				if (numero.Length <= 0)
+				{
+					throw new Exception("La longitud del campo número con valor ingresado " + numero + " no es correcto.");
+				}
+				if (numero.Length > 11)
+				{
+					throw new Exception("La longitud del campo número con valor ingresado " + numero + " no es correcto.");
+				}
+				#endregion
 
 				var oEmpresa = EmpresaNeg.Instance.Consultar(ruc);
+
+				if (oEmpresa == null)
+				{
+					 throw new Exception("La empresa con RUC: "+ ruc +" no es correcto.");
+				}
 
 				var Parametros = new Dictionary<string, object>();
 				Parametros.Add("Empresa_Id", oEmpresa.Empresa_Id);
@@ -77,18 +102,18 @@ namespace WSApiFMSACApp.Controllers
 				{
 					var oTransaccion = Lista.First();
 
-					if (oTransaccion != null)
+					if (oTransaccion != null && oTransaccion.Transaccion_Id>0)
 					{
 						if (oTransaccion.nTraEstadoTransaccionElectronica <= 0)
 						{
-							new Exception("El documento aún no ha sido enviado a sunat y su estado es: " +
+							throw new Exception("El documento aún no ha sido enviado a sunat y su estado es: " +
 								oTransaccion.nTraEstadoTransaccionElectronica);
 						}
 
 						string strNombreArchivo = oDocumentoElectronico.GenerarNombreXML(oTransaccion, oEmpresa);
 
 						/*Aqui rehacer el PDF*/
-						bool resultado = GenerarPDF(oTransaccion, oEmpresa);
+						//bool resultado = GenerarPDF(oTransaccion, oEmpresa);
 
 						#region Completando Rutas
 
@@ -150,19 +175,20 @@ namespace WSApiFMSACApp.Controllers
 				}
                 else
                 {
-                    Response.Redirect("~/Home/Index");
+                    return RedirectToAction("~/Views/Shared/Error");
                 }
 
 
 
-                Response.Redirect("~/Home/Index");
+                return RedirectToAction("Index");
 
-                return null;
+                // return null;
 			}
 			catch (Exception ex)
 			{
 				LogApplicationNeg.Instance.GuardarLogAplicacion(ex);
-				return null;
+				throw new Exception(ex.Message);
+				//return RedirectToAction("~/Views/Shared/Error");
 			}
         }
 
@@ -427,39 +453,34 @@ namespace WSApiFMSACApp.Controllers
 
         private string ObtenerRutaRespuestaSunat(int tipoDocumento_Id, Empresa oEmpresa, string pstrNombreArchivoXml)
         {
-
-          string   RUTA_LOGO_EMPRESA = @"" + oEmpresa.sEmpRuta + Enumerador.RUTA_SERVIDOR_EMPRESA_LOGO_PDF;
-
-
             string strRespuestaSUNATxml = string.Empty;
 
-            //if (tipoDocumento_Id == (int)Enumerador.FACTURA_ELECTRONICA.TIPO_DOCUMENTO_FACTURA)
-            //{
-            //    strRespuestaSUNATxml = oEmpresa.sEmpRuta + RUTA_REPOSITORIO_ELECTRONICO_RESP + "\\" + "R-" + pstrNombreArchivoXml.Trim('\\') + ".xml";
-            //}
-            //else
-            //        if (tipoDocumento_Id == (int)Enumerador.FACTURA_ELECTRONICA.TIPO_DOCUMENTO_BOLETA)
-            //{
-            //    strRespuestaSUNATxml = oEmpresa.sEmpRuta + RUTA_REPOSITORIO_ELECTRONICO_RESUMEN_BOLETAS_RESP + "\\" + "R-" + pstrNombreArchivoXml.Trim('\\') + ".xml";
-            //}
-            //else
-            //        if (tipoDocumento_Id == (int)Enumerador.FACTURA_ELECTRONICA.TIPO_DOCUMENTO_NOTA_CREDITO)
-            //{
-            //    strRespuestaSUNATxml = oEmpresa.sEmpRuta + RUTA_REPOSITORIO_ELECTRONICO_NOTA_CREDITO_RESP + "\\" + "R-" + pstrNombreArchivoXml.Trim('\\') + ".xml";
-            //}
-            //else
-            //        if (tipoDocumento_Id == (int)Enumerador.FACTURA_ELECTRONICA.TIPO_DOCUMENTO_NOTA_DEBITO)
-            //{
-            //    strRespuestaSUNATxml = oEmpresa.sEmpRuta + RUTA_REPOSITORIO_ELECTRONICO_NOTA_DEBITO_RESP + "\\" + "R-" + pstrNombreArchivoXml.Trim('\\') + ".xml";
-            //}
-            //else
-            //        if (tipoDocumento_Id == (int)Enumerador.FACTURA_ELECTRONICA.TIPO_DOCUMENTO_GUIA_REMISION)
-            //{
-            //    strRespuestaSUNATxml = oEmpresa.sEmpRuta + RUTA_REPOSITORIO_ELECTRONICO_GUIA_REMISION_RESP + "\\" + "R-" + pstrNombreArchivoXml.Trim('\\') + ".xml";
-            //}
+			if (tipoDocumento_Id == (int)Enumerador.FACTURA_ELECTRONICA.TIPO_DOCUMENTO_FACTURA)
+			{
+				strRespuestaSUNATxml = oEmpresa.sEmpRuta + Enumerador.RUTA_SERVIDOR_DOCUMENTO_ELECTRONICO_FACTURAS_RESPUESTA + "\\" + "R-" + pstrNombreArchivoXml.Trim('\\') + ".xml";
+			}
+			else
+					if (tipoDocumento_Id == (int)Enumerador.FACTURA_ELECTRONICA.TIPO_DOCUMENTO_BOLETA)
+			{
+				strRespuestaSUNATxml = oEmpresa.sEmpRuta + Enumerador.RUTA_SERVIDOR_DOCUMENTO_ELECTRONICO_BOLETAS_RESPUESTA + "\\" + "R-" + pstrNombreArchivoXml.Trim('\\') + ".xml";
+			}
+			else
+					if (tipoDocumento_Id == (int)Enumerador.FACTURA_ELECTRONICA.TIPO_DOCUMENTO_NOTA_CREDITO)
+			{
+				strRespuestaSUNATxml = oEmpresa.sEmpRuta + Enumerador.RUTA_SERVIDOR_DOCUMENTO_ELECTRONICO_NOTA_CREDITO_RESPUESTA + "\\" + "R-" + pstrNombreArchivoXml.Trim('\\') + ".xml";
+			}
+			else
+					if (tipoDocumento_Id == (int)Enumerador.FACTURA_ELECTRONICA.TIPO_DOCUMENTO_NOTA_DEBITO)
+			{
+				strRespuestaSUNATxml = oEmpresa.sEmpRuta + Enumerador.RUTA_SERVIDOR_DOCUMENTO_ELECTRONICO_NOTA_DEBITO_RESPUESTA + "\\" + "R-" + pstrNombreArchivoXml.Trim('\\') + ".xml";
+			}
+			else
+					if (tipoDocumento_Id == (int)Enumerador.FACTURA_ELECTRONICA.TIPO_DOCUMENTO_GUIA_REMISION)
+			{
+				strRespuestaSUNATxml = oEmpresa.sEmpRuta + Enumerador.RUTA_SERVIDOR_DOCUMENTO_ELECTRONICO_GUIA_REMISION_RESPUESTA + "\\" + "R-" + pstrNombreArchivoXml.Trim('\\') + ".xml";
+			}
 
-
-            return strRespuestaSUNATxml;
+			return strRespuestaSUNATxml;
         }
 
 

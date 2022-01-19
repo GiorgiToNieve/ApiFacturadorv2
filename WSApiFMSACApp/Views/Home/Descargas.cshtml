@@ -27,7 +27,7 @@
                     <label for="Username">RUC Emisor:</label>
                 </div>
                 <div class="col-md-offset-2 col-md-10">
-                     <input type="number" name="ruc" required/>
+                     <input type="number" name="ruc" required maxlength="11" minlength="11"/>
                 </div>
             </div>
 
@@ -36,7 +36,7 @@
                     <label for="Username">Serie:</label>
                 </div>
                 <div class="col-md-offset-2 col-md-10">
-                    <input type="text" name="serie"  required/>
+                    <input type="text" name="serie"  required maxlength="4" minlength="4"/>
                 </div>
             </div>
 
@@ -45,7 +45,7 @@
                     <label for="Username">Numero:</label>
                  </div>
                  <div class="col-md-offset-2 col-md-10">
-                        <input type="number" name="numero"  required/>
+                        <input type="number" name="numero"  required maxlength="12" minlength="1"/>
                  </div>
             </div>
 
@@ -53,6 +53,7 @@
                 <div class="col-md-offset-2 col-md-10">
                     <input name="accion" type ="submit" value="Descargar PDF" class="btn btn-default" />
                     <input name="accion" type="submit" value="Descargar XML" class="btn btn-default" />
+                    <input name="accion" type="submit" value="Descargar CDR" class="btn btn-default" />
                 </div>
             </div>
         </div>

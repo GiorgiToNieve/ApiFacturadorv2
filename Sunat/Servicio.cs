@@ -682,7 +682,7 @@ namespace Sunat
 
 		public bool ConsultarTicketOSE(Empresa p_oEmpresa, string sTraTicket)
 		{
-			byte[] byRespuestaArchivo = null;
+			//byte[] byRespuestaArchivo = null;
 
 			ServicePointManager.UseNagleAlgorithm = true;
 			ServicePointManager.Expect100Continue = false;

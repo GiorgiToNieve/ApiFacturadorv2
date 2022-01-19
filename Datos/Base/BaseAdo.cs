@@ -88,7 +88,7 @@ namespace Datos.Base
             
                 return oEscalar;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 throw;
             }

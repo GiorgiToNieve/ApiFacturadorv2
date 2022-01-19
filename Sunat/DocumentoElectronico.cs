@@ -758,11 +758,19 @@ namespace Sunat
 
 					if (oTransaccion.nTraFormaPago == 2)
 					{
+						//agregado el 18-01-2022
+						//--------------------------------------------------------------------------------------
+						decimal nTotalImporteformaPagoFactura = 0;
+						nTotalImporteformaPagoFactura = oTransaccion.LstFormaPago.Sum(x => x.nFPaTotalCuota);
+						//---------------------------------------------------------------------------------------
+
 						W.WriteStartElement("cbc:Amount");
 						W.WriteStartAttribute("currencyID");
 						W.WriteValue(MONEDA);
 						W.WriteEndAttribute();
-						W.WriteValue(String.Format(CultureInfo.InvariantCulture, "{0:0.00}", oTransaccion.nTraImporteTotal));
+						//W.WriteValue(String.Format(CultureInfo.InvariantCulture, "{0:0.00}", oTransaccion.nTraImporteTotal));
+						//se cambio el valor del importe total por la sumatoria del total de la cuota 18-01-2022
+						W.WriteValue(String.Format(CultureInfo.InvariantCulture, "{0:0.00}", nTotalImporteformaPagoFactura));
 						W.WriteEndElement();//cbc:Amount
 					}
 					W.WriteEndElement();//cac:PaymentTerms
@@ -817,6 +825,10 @@ namespace Sunat
 
 					if (oTransaccion.nTraFormaPago == 2)
 					{
+						//agregado el 18-01-2022
+						decimal nTotalImporteformaPagoNC = 0;
+						nTotalImporteformaPagoNC = oTransaccion.LstFormaPago.Sum(x => x.nFPaTotalCuota);
+
 						W.WriteStartElement("cac:PaymentTerms");
 						W.WriteStartElement("cbc:ID");
 						W.WriteValue("FormaPago");
@@ -837,7 +849,10 @@ namespace Sunat
 						W.WriteStartAttribute("currencyID");
 						W.WriteValue(MONEDA);
 						W.WriteEndAttribute();
-						W.WriteValue(String.Format(CultureInfo.InvariantCulture, "{0:0.00}", oTransaccion.nTraImporteTotal));
+						//W.WriteValue(String.Format(CultureInfo.InvariantCulture, "{0:0.00}", oTransaccion.nTraImporteTotal));
+						//se cambio el valor del importe total por la sumatoria del total de la cuota 18-01-2022
+						W.WriteValue(String.Format(CultureInfo.InvariantCulture, "{0:0.00}", nTotalImporteformaPagoNC));
+
 						W.WriteEndElement();//cbc:Amount
 											// }
 						W.WriteEndElement();//cac:PaymentTerms
