@@ -4,16 +4,17 @@
     ViewBag.Title = "Error";
 }
 
-<div style="background-color: #A52A2A; color: White; height: 10px;">
+<div style="background-color: #A52A2A; color: White; height: 50px;">
 </div>
-<div style="background-color: White; color: orangered; height: 170px;">
+<div style="background-color: White; color: orange; height: 170px;">
     <div style=" padding:20px;">
         <h3>
             Application Error:
         </h3>
         <h4>
-            Lo sentimos seha presentado el siguiente error. @Model.Exception.Message
+            Lo sentimos se ha presentado el siguiente error. 
         </h4>
+        <h4>@Model.Exception.Message</h4>
         <h6>@Html.ActionLink("Retornar a la Pagina de consultas", "Descargas", "Home")</h6>
         <br />
         <br />

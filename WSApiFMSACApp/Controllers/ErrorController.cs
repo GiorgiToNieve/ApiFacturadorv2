@@ -30,8 +30,8 @@ namespace WSApiFMSACApp.Controllers
 					break;
 
 				default:
-					ViewBag.Title = "Página no encontrada";
-					ViewBag.Description = "Algo salio muy mal :( ..";
+					ViewBag.Title = "Advertencia";
+					ViewBag.Description = msj;
 					break;
 			}
 

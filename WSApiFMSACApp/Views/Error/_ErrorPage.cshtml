@@ -1,9 +1,21 @@
 ﻿
-@{
-    ViewBag.Title = "_ErrorPage";
-}
-
-<h2>Error</h2>
-
-@ViewBag.Description
-
+<div style="background-color: #A52A2A; color: White; height: 50px;">
+</div>
+<div style="background-color: White; color: orange; height: 170px;">
+    <div style=" padding:20px;">
+        <h3>
+            @ViewBag.Title
+        </h3>
+        <h4>
+            Lo sentimos se ha presentado el siguiente error.
+        </h4>
+        <h4>
+            @ViewBag.Description
+        </h4>
+        <h6>@Html.ActionLink("Retornar a la Pagina de consultas", "Descargas", "Home")</h6>
+        <br />
+        <br />
+    </div>
+</div>
+<div style="background-color: #A52A2A; color: White; height: 50px;">
+</div>  

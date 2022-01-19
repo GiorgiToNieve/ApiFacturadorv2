@@ -30,7 +30,7 @@ namespace WSApiFMSACApp
 			int error = httpException != null ? httpException.GetHttpCode() : 0;
 
 			Server.ClearError();
-			Response.Redirect(String.Format("~/Error/?error={0}", error, exception.Message));
+			Response.Redirect(String.Format("~/Error/?error={0}&msj={1}", error, exception.Message));
 		}
 	}
 }
