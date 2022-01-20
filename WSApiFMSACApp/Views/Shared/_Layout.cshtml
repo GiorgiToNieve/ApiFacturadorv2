@@ -1,43 +1,95 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - SERVICIO NevadaSunCloud</title>
-    @Styles.Render("~/Content/css")
-    @Scripts.Render("~/bundles/modernizr")
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <title>@ViewBag.Title Facturador NevadaSunCloud</title>
+    <!-- Bootstrap icons-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
+    <link href="~/Content/Site.css" rel="stylesheet" />
+    <style>
+        /* Modify the background color */
+
+        .navbar-custom {
+            background-color: rebeccapurple;
+        }
+            /* Modify brand and text color */
+
+            .navbar-custom .navbar-brand,
+            .navbar-custom .navbar-text {
+                color: whitesmoke;
+            }
+
+        body {
+            margin: 0;
+            font-family: var(--bs-body-font-family);
+            font-size: var(--bs-body-font-size);
+            font-weight: var(--bs-body-font-weight);
+            line-height: var(--bs-body-line-height);
+            color: var(--bs-body-color);
+            text-align: var(--bs-body-text-align);
+            background-color: var(--bs-body-bg);
+            -webkit-text-size-adjust: 100%;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+    </style>
 </head>
-<body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                @Html.ActionLink("NevadaSunCloud Services", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
-            </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Inicio", "Index", "Home")</li>
-                    <li>@Html.ActionLink("Descargas", "Descargas", "Home")</li>
+<body class="d-flex flex-column h-100">
+    <!-- Navigation-->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container px-5">
+            <a class="navbar-brand" href="#">NEVADASUNCLOUD</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                    aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <div class="mx-auto order-0 btn-lg px-4 me-sm-3">
+                            <a class="navbar-brand mx-auto" href="@Url.Action("Index", "Home")">Inicio</a>
+                            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".dual-collapse2">
+                                <span class="navbar-toggler-icon"></span>
+                            </button>
+                        </div>
+                    </li>
+                    &nbsp;
+                    &nbsp;
+                    <li class="nav-item">
+                        <div class="mx-auto order-0 btn-lg px-4 me-sm-3 bg-primary">
+                            <a class="navbar-brand mx-auto" href="@Url.Action("Descargas", "Home")">Descargas</a>
+                            <button class="navbar-toggler bg-info" type="button" data-toggle="collapse" data-target=".dual-collapse2">
+                                <span class="navbar-toggler-icon"></span>
+                            </button>
+                        </div>
+                    </li>
                 </ul>
             </div>
         </div>
-    </div>
-    <div class="container body-content">
+    </nav>
+    <main class="flex-shrink-0">
         @RenderBody()
-        <hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year - NevadaSunCloud Todos los Derechos Reservados</p>
-        </footer>
-    </div>
-
-    @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/bootstrap")
-    @RenderSection("scripts", required: false)
+    </main>
+    <!-- Footer-->
+    <footer class="bg-dark py-4 mt-auto">
+        <div class="container px-5">
+            <div class="row align-items-center justify-content-between flex-column flex-sm-row">
+                <div class="col-auto"><div class="small m-0 text-white">Copyright &copy; 2022 - NevadaSunCloud Todos los Derechos Reservados</div></div>
+                <div class="col-auto">
+                    <a class="link-light small" href="https://nevadasuncloud.com">Privacidad</a>
+                    <span class="text-white mx-1">&middot;</span>
+                    <a class="link-light small" href="https://nevadasuncloud.com">Terminos</a>
+                    <span class="text-white mx-1">&middot;</span>
+                    <a class="link-light small" href="https://nevadasuncloud.com">Contacto</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- Bootstrap core JS-->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Core theme JS-->
+    <script src="~/Scripts/scripts.js"></script>
+    @RenderSection("Scripts", required: false)
 </body>
 </html>

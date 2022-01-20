@@ -3,64 +3,95 @@
 @{
     ViewBag.Title = "Descargas";
 }
-
-<h2>Descargas</h2>
-
 @using (Html.BeginForm("ConsultarDocumento", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     @Html.AntiForgeryToken()
    
-        <div class="form-horizontal">
+<div class="container px-5">
+    <div class="bg-light rounded-3 py-5 px-4 px-md-5 mb-5">
+        <div class="text-center mb-5">
+            <div class="feature bg-primary bg-transparent text-white rounded-3 mb-3"><img src="~/Content/Img/Logo.png" width="100%" height="100%" /></div>
+            <h1 class="fw-bolder">Descargas</h1>
+            <p class="lead fw-normal text-muted mb-0">Consulta tus documentos electrónicos</p>
+        </div>
+        <hr />
+        @*<div class="form-group">
+            <div class="col-md-offset-2 col-md-6">
+                <img src="~/Content/Img/Logo.png" width="20%" height="20%" />
+            </div>
+        </div>*@
+        
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
-            <div class="form-group">
-                <div class="col-md-offset-2 col-md-6">
-                    <img src="~/Content/Img/Logo.png" width="20%" height="20%"/>
-                  </div>
+        <div class="row gx-5 justify-content-center">
+            <div class="col-lg-8 col-xl-6">
+
+                <!-- RUC Emisor-->
+                <div class="form-floating mb-3">
+                    <input class="form-control" name="ruc" type="number" placeholder=" 11 digitos" data-sb-validations="required" required />
+                    <label for="ruc">RUC Emisor</label>
+                    <div class="invalid-feedback" data-sb-feedback="ruc:required">An ruc is required.</div>
+                    <div class="invalid-feedback" data-sb-feedback="ruc:email">ruc is not valid.</div>
                 </div>
 
-            <h4>CONSULTA DE DOCUMENTOS ELECTRONICOS</h4>
-            <hr />
-            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-
-            <div class="form-group">
+                @*<div class="form-floating mb-3">
                 <div class="col-md-offset-2 col-md-10">
                     <label for="Username">RUC Emisor:</label>
                 </div>
                 <div class="col-md-offset-2 col-md-10">
-                     <input type="number" name="ruc" required maxlength="11" minlength="11"/>
+                    <input type="number" name="ruc" required maxlength="11" minlength="11" />
                 </div>
-            </div>
+                </div>*@
 
-            <div class="form-group">
+
+                <!-- SERIE-->
+                <div class="form-floating mb-3">
+                    <input class="form-control" name="serie" type="text" placeholder="F001" data-sb-validations="required" required />
+                    <label for="ruc">Serie</label>
+                    <div class="invalid-feedback" data-sb-feedback="ruc:required">An Serie is required.</div>
+                    <div class="invalid-feedback" data-sb-feedback="ruc:email">Serie is not valid.</div>
+                </div>
+
+                @*<div class="form-floating mb-3">
                 <div class="col-md-offset-2 col-md-10">
-                    <label for="Username">Serie:</label>
+                <label for="Username">Serie:</label>
                 </div>
                 <div class="col-md-offset-2 col-md-10">
-                    <input type="text" name="serie"  required maxlength="4" minlength="4"/>
+                <input type="text" name="serie" required maxlength="4" minlength="4" />
                 </div>
-            </div>
+                </div>*@
 
-            <div class="form-group">
-                <div class="col-md-offset-2 col-md-10">
-                    <label for="Username">Numero:</label>
-                 </div>
-                 <div class="col-md-offset-2 col-md-10">
-                        <input type="number" name="numero"  required maxlength="12" minlength="1"/>
-                 </div>
-            </div>
+                <!-- NUMERO-->
+                <div class="form-floating mb-3">
+                    <input class="form-control" name="numero" type="number" placeholder="ingrese numero de documento" data-sb-validations="required" required />
+                    <label for="ruc">Numero</label>
+                    <div class="invalid-feedback" data-sb-feedback="ruc:required">An numero is required.</div>
+                    <div class="invalid-feedback" data-sb-feedback="ruc:email">numero is not valid.</div>
+                </div>
 
-            <div class="form-group">
-                <div class="col-md-offset-2 col-md-10">
-                    <input name="accion" type ="submit" value="Descargar PDF" class="btn btn-default" />
-                    <input name="accion" type="submit" value="Descargar XML" class="btn btn-default" />
-                    <input name="accion" type="submit" value="Descargar CDR" class="btn btn-default" />
+                @*<div class="form-floating mb-3">
+                    <div class="col-md-offset-2 col-md-10">
+                        <label for="Username">Numero:</label>
+                    </div>
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="number" name="numero" required maxlength="12" minlength="1" />
+                    </div>
+                </div>*@
+
+                <div class="form-floating mb-3 justify-content-sm-center">
+                    <div class="col-md-offset-2 col-md-12 d-grid">
+                        <input name="accion" type="submit" value="Descargar PDF" class="btn btn-primary mb-3" />
+                        <input name="accion" type="submit" value="Descargar XML" class="btn btn-primary mb-3" />
+                        <input name="accion" type="submit" value="Descargar CDR" class="btn btn-primary mb-3" />
+                    </div>
                 </div>
             </div>
         </div>
-        
+        </div>
+    </div>
 
-        }
+    }
 
-        @section Scripts {
-            @Scripts.Render("~/bundles/jqueryval")
-        }
+    @section Scripts {
+        @Scripts.Render("~/bundles/jqueryval")
+    }
