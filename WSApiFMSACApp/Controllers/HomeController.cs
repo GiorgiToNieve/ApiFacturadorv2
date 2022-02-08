@@ -106,8 +106,7 @@ namespace WSApiFMSACApp.Controllers
 					{
 						if (oTransaccion.nTraEstadoTransaccionElectronica <= 0)
 						{
-							throw new Exception("El documento aún no ha sido enviado a sunat y su estado es: " +
-								oTransaccion.nTraEstadoTransaccionElectronica);
+							throw new Exception("El documento aún no ha sido enviado a sunat y su estado es Pendiente de envío.");
 						}
 
 						string strNombreArchivo = oDocumentoElectronico.GenerarNombreXML(oTransaccion, oEmpresa);
@@ -115,7 +114,7 @@ namespace WSApiFMSACApp.Controllers
 						/*Aqui rehacer el PDF*/
 						//bool resultado = GenerarPDF(oTransaccion, oEmpresa);
 
-						#region Completando Rutas
+						#region Completando Rutas XML
 
 						RUTA_PDF = oEmpresa.sEmpRuta + Enumerador.RUTA_SERVIDOR_FACTURAS_ELECTRONICAS_PDF;
 						RUTA_XML = oEmpresa.sEmpRuta + Enumerador.RUTA_SERVIDOR_DOCUMENTO_ELECTRONICO_FACTURAS +

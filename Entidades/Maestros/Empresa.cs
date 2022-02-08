@@ -1,4 +1,5 @@
 ﻿using Entidades.Base;
+using System.Xml.Serialization;
 
 namespace Entidades.Maestros
 {
@@ -6,36 +7,47 @@ namespace Entidades.Maestros
     {
         #region "Columnas"
 
+        [XmlAttribute]
         [PrimaryKey]
         public int Empresa_Id { set; get; }
 
+        [XmlAttribute]
         [Field]
         public string sEmpRuc { set; get; }
 
+        [XmlAttribute]
         [Field]
         public string sEmpNombre { set; get; }
 
+        [XmlAttribute]
         [Field]
         public string sEmpBreve { set; get; }
 
+        [XmlAttribute]
         [Field]
         public string sEmpEmail { set; get; }
 
+        [XmlAttribute]
         [Field]
         public string sEmpTelefono { set; get; }
 
+        [XmlAttribute]
         [ForeignKey]
         public int Ubigeo_Id { set; get; }
 
         /// <summary>
         /// Direccion fiscal de la empresa emisora
         /// </summary>
+        [XmlAttribute]
         [Field]
         public string sEmpDireccion { set; get; }
 
 
         #region Campos de Login para la Facturacion Electronica
 
+
+
+        [XmlAttribute]
         [Field]
         public string sEmpUsuarioFE { set; get; }
 
@@ -43,18 +55,21 @@ namespace Entidades.Maestros
         /// 
         /// </summary>
         [Field]
+        [XmlAttribute]
         public string sEmpPasswordFE { get; set; }
 
         /// <summary>
         /// Clave del certificado digital de la empresa
         /// </summary>
         [Field]
+        [XmlAttribute]
         public string sEmpClaveCertificadoFE { get; set; }
 
         /// <summary>
         /// ruta raiz donde se guardan las demas carpetas del proceso de FE
         /// </summary>
         [Field]
+        [XmlAttribute]
         public string sEmpRuta { get; set; }
 
         /// <summary>
@@ -62,6 +77,7 @@ namespace Entidades.Maestros
         /// para que sea localizado por el mismo
         /// </summary>
         [Field]
+        [XmlAttribute]
         public string sEmpNombreCertificado { get; set; }
 
 
@@ -70,6 +86,7 @@ namespace Entidades.Maestros
         /// 1:Produccion
         /// </summary>
         [Field]
+        [XmlAttribute]
         public int nEmpProduccion { get; set; }
 
         #endregion
@@ -84,6 +101,7 @@ namespace Entidades.Maestros
         /// y esta en duracell va en la fact_elect
         /// </summary>
         [Field]
+        [XmlAttribute]
         public string sEmpCodigoUbigeoSunat { set; get; }
 
         /// <summary>
@@ -93,12 +111,14 @@ namespace Entidades.Maestros
         /// va en la ciudad de la facturacion electronica
         /// </summary>
         [Field]
+        [XmlAttribute]
         public string sEmpCiudad { set; get; }
 
         /// <summary>
         /// campo abreviado del pais en este caso PE de Perú
         /// </summary>
         [Field]
+        [XmlAttribute]
         public string sEmpAbreviaturaPais { set; get; }
 
         /// <summary>
@@ -106,6 +126,7 @@ namespace Entidades.Maestros
         /// por default es 06 y viene tbn desde la base de datos
         /// </summary>
         [Field]
+        [XmlAttribute]
         public string sEmpTipoIdentificadorEmpresaSunat { set; get; }
 
         /// <summary>
@@ -113,27 +134,33 @@ namespace Entidades.Maestros
         /// y viene desde la base de datos
         /// </summary>
         [Field]
+        [XmlAttribute]
         public string sEmpTipoIdentificadorClienteSunat { set; get; }
 
         /// <summary>
         /// cuenta de banco de la nacion de la empresa para las detracciones
         /// </summary>
         [Field]
+        [XmlAttribute]
         public string sEmpCtaBancoDetracciones { set; get; }
 
         [Field]
+        [XmlAttribute]
         public string sEmpCodigoDetraccion { set; get; }
 
 		/// <summary>
 		/// 0: SIN RELACION; 1: LA EMPRESA ES INAFECTO AL IGV
 		/// </summary>
 		[Field]
-		public int nEmpExonerado { set; get; }
+        [XmlAttribute]
+        public int nEmpExonerado { set; get; }
 
 		[Field]
+        [XmlAttribute]
         public int nEmpEstado { set; get; }
 
 		[Field]
+        [XmlAttribute]
         public int nEmpAfilidadoOSE { set; get; }
 
 		#endregion
