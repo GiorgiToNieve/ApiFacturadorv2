@@ -2071,6 +2071,27 @@ namespace Sunat
 						}
 
 							return true;
+				}else
+					if (strRespuestaCodigo == "287")
+				{
+					var ParametrosValor = new Dictionary<string, object>();
+					ParametrosValor.Add("nTraEstadoTransaccionElectronica", (int)Enumerador.FACTURA_ELECTRONICA.ESTADO_DOC_ELECTRONICO_BAJA_ENVIADA_SUNAT);
+					string mensaje = " Sistema: Enviado a Baja Sunat(Actualización Automática), " + " de ser necesario verificar en portal Sunat.";
+					ParametrosValor.Add("sTraRespuestaValidacion", mensaje);
+
+					var ParametrosId = new Dictionary<string, object>();
+					ParametrosId.Add("Transaccion_Id", Transaccion_Id);
+					TransaccionNeg.Instance.Actualizar(ParametrosValor, ParametrosId);
+
+
+					if (strDescripcion.Contains("La Comunicacion de baja"))
+						if (strDescripcion.Contains("ha sido aceptada"))
+						{
+							//para tener documentado en base la aceptacion del documento
+							ActualizarValidacionConRespuesta(Transaccion_Id, strDescripcion, strRespuestaCodigo);
+						}
+
+					return true;
 				}
 
 
