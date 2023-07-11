@@ -3032,7 +3032,7 @@ namespace Sunat
 				string strRuta = string.Empty;
 				//para ser llenado en el xml
 				string sNombre_Doc_RA = string.Empty;
-				sFechaFormato = DateTime.Now.Date.ToString("yyyyMMdd");
+				sFechaFormato = DateTime.Now.AddHours(2).Date.ToString("yyyyMMdd");//MAS DOS HORAS POR SERVIDOR SMARTER HORA PERU
 				sFechaCabecera = LstTraBoletas.FirstOrDefault().dTraFecha.ToString("yyyy-MM-dd");
 
 				string strDescripcionAnulacion_correo = string.Empty;
@@ -3216,7 +3216,7 @@ namespace Sunat
 				W.WriteEndElement();
 
 				W.WriteStartElement("cbc:IssueDate");
-				W.WriteValue(DateTime.Now.ToString("yyyy-MM-dd"));
+				W.WriteValue(DateTime.Now.AddHours(2).ToString("yyyy-MM-dd"));
 				//Fecha de generación del documento resumen
 				W.WriteEndElement();
 

@@ -883,8 +883,15 @@ namespace Sunat
 					Transaccion_id = LstTraBoletas.FirstOrDefault().Transaccion_Id;
 				}
 
-
-				if (VerificarRespuesta(strRespuestaSUNATxml, Transaccion_id))
+				if (status == "3")
+				{
+					if (VerificarRespuestaBajas(strRespuestaSUNATxml, Transaccion_id))
+					{
+						ActualizarDocumentoElectronico(LstTraBoletas, (int)Enumerador.FACTURA_ELECTRONICA.ESTADO_DOC_ELECTRONICO_BAJA_ENVIADA_SUNAT);
+					}
+				}
+				else
+					if (VerificarRespuesta(strRespuestaSUNATxml, Transaccion_id))
 				{
                     if (status == "3")
                     {
