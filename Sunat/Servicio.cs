@@ -11,6 +11,7 @@ using Utilitarios;
 using Ionic.Zip;
 using Negocio.Comercial;
 using Negocio.Maestros;
+using System.Threading.Tasks;
 
 namespace Sunat
 {
@@ -799,12 +800,17 @@ namespace Sunat
         /// <param name="oEmpresa"></param>
         /// <returns></returns>
 
-        public bool EnviarResumenBoletasSunat(List<Transaccion> LstTraBoletas, Empresa oEmpresa, string status="1")
+        public async Task<bool> EnviarResumenBoletasSunat(List<Transaccion> LstTraBoletas, Empresa oEmpresa, string status="1")
         {
             try
             {
-                #region Variables
-                string respuesta = string.Empty;
+				#region Variables
+
+				int contador = 0;
+
+			    Inicio:
+
+				string respuesta = string.Empty;
                 string strRespuestaSUNATxml = string.Empty;
                 string strNombreArchivo = GenerarArchivoXmlyZipResumenBoletas(LstTraBoletas, oEmpresa,status);
                 GuardaryComprimirXML(oEmpresa.sEmpRuta+RUTA_REPOSITORIO_ELECTRONICO_BOLETAS + @"\" + strNombreArchivo);
@@ -830,9 +836,12 @@ namespace Sunat
                     var behavior = new PasswordDigestBehavior(string.Concat(oEmpresa.sEmpRuc,oEmpresa.sEmpUsuarioFE),oEmpresa.sEmpPasswordFE);
 
                     wServiceClient.Endpoint.EndpointBehaviors.Add(behavior);
-                    respuesta = wServiceClient.sendSummary(strNombreArchivo1, byContenidoArchivo, string.Empty);
-                    byRespuestaArchivo = wServiceClient.getStatus(respuesta).content;
-                }
+					var result = await wServiceClient.sendSummaryAsync(strNombreArchivo1, byContenidoArchivo, string.Empty);
+					respuesta = result.ticket;
+					var oRptArchivo = await wServiceClient.getStatusAsync(respuesta);
+					await Task.Delay(1000);
+					byRespuestaArchivo = oRptArchivo.status.content;
+				}
                 else
                 {
                     var wServiceClient = new Sunat.wsServicioSunat_beta.billServiceClient(Enumerador.SERVICIO_SUNAT_PRUEBAS);
@@ -848,7 +857,7 @@ namespace Sunat
                 string GuardarRespuesta = oEmpresa.sEmpRuta + RUTA_REPOSITORIO_ELECTRONICO_RESUMEN_BOLETAS_RESP + "\\" + "R-" + strNombreArchivo1;
                 File.WriteAllBytes(GuardarRespuesta, byRespuestaArchivo);
 
-                using (var zip = new ZipFile(GuardarRespuesta))
+				using (var zip = new ZipFile(GuardarRespuesta))
                 {
                     //Asegurando que haya un solo documento y que no genere error de existencia
                     Array.ForEach(Directory.GetFiles(oEmpresa.sEmpRuta + RUTA_REPOSITORIO_ELECTRONICO_RESUMEN_BOLETAS_RESP),
@@ -883,11 +892,18 @@ namespace Sunat
 					Transaccion_id = LstTraBoletas.FirstOrDefault().Transaccion_Id;
 				}
 
+				contador++;
 				if (status == "3")
 				{
 					if (VerificarRespuestaBajas(strRespuestaSUNATxml, Transaccion_id))
 					{
 						ActualizarDocumentoElectronico(LstTraBoletas, (int)Enumerador.FACTURA_ELECTRONICA.ESTADO_DOC_ELECTRONICO_BAJA_ENVIADA_SUNAT);
+						rpta = true;
+					}
+					else
+					{
+						if (contador < 5)
+							goto Inicio;
 					}
 				}
 				else
@@ -2072,7 +2088,7 @@ namespace Sunat
 
 							return true;
 				}else
-					if (strRespuestaCodigo == "287")
+					if (strRespuestaCodigo == "2987")
 				{
 					var ParametrosValor = new Dictionary<string, object>();
 					ParametrosValor.Add("nTraEstadoTransaccionElectronica", (int)Enumerador.FACTURA_ELECTRONICA.ESTADO_DOC_ELECTRONICO_BAJA_ENVIADA_SUNAT);

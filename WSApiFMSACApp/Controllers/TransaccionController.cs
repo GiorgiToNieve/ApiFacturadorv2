@@ -790,7 +790,7 @@ namespace WSApiFMSACApp.Controllers
 		/// </summary>
 		/// <param name="LstTransaccion"></param>
 		/// <returns></returns>
-		private bool EnviarSunat(List<Transaccion> LstTransaccion)
+		private async Task<bool> EnviarSunat(List<Transaccion> LstTransaccion)
         {
             try
             {
@@ -900,7 +900,7 @@ namespace WSApiFMSACApp.Controllers
 
                 if (LstTraBoletas.Count > 0)
                 {
-                    return wsServicio.EnviarResumenBoletasSunat(LstTraBoletas, MiEmpresa);
+                    return await wsServicio.EnviarResumenBoletasSunat(LstTraBoletas, MiEmpresa);
                 }
 
                 #endregion
@@ -909,7 +909,7 @@ namespace WSApiFMSACApp.Controllers
             }
             catch (Exception ex)
             {
-                LogApplicationNeg.Instance.GuardarLogAplicacion(ex);
+				await LogApplicationNeg.Instance.GuardarLogAplicacion(ex);
 
                 return false;
             }
@@ -1081,7 +1081,7 @@ namespace WSApiFMSACApp.Controllers
         /// <returns></returns>
         [HttpGet]
         [Route("AnularSunat/{sEmpRuc}/{sTraSerie}/{sTraNumero}")]
-        public int AnularSunat(string sEmpRuc, string sTraSerie, string sTraNumero)
+        public async Task<int> AnularSunat(string sEmpRuc, string sTraSerie, string sTraNumero)
         {
             try
             {
@@ -1103,7 +1103,7 @@ namespace WSApiFMSACApp.Controllers
 						if (oEmpresa.nEmpAfilidadoOSE == Enumerador.ESTADO_ACTIVO)
 							wsServicio.EnviarResumenBoletasSunatOSE(Lista, oEmpresa, Enumerador.ESTADO_BOLETA_ELECTRONICA_BAJA);
 						else
-							wsServicio.EnviarResumenBoletasSunat(Lista, oEmpresa, Enumerador.ESTADO_BOLETA_ELECTRONICA_BAJA);
+							await wsServicio.EnviarResumenBoletasSunat(Lista, oEmpresa, Enumerador.ESTADO_BOLETA_ELECTRONICA_BAJA);
 
 						return Enumerador.RESPUESTA_ENVIADO_SUNAT;
                     }
@@ -1140,7 +1140,7 @@ namespace WSApiFMSACApp.Controllers
             }
             catch (Exception ex)
             {
-                LogApplicationNeg.Instance.GuardarLogAplicacion(ex);
+                await LogApplicationNeg.Instance.GuardarLogAplicacion(ex);
                 return Enumerador.RESPUESTA_ERROR_INSERTADO_BD;
             }
         }
